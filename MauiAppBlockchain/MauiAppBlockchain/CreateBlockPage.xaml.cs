@@ -25,7 +25,7 @@ public partial class CreateBlockPage : ContentPage
 		HttpClient client = new HttpClient();
 		var json = JsonConvert.SerializeObject(block);
 		var content = new StringContent(json, Encoding.UTF8, "application/json");
-		var response = await client.PostAsync("http://192.168.43.175:5153/api/Chain", content);
+		var response = await client.PostAsync("http://192.168.0.12:5153/api/Chain", content);
 
 		if (response.IsSuccessStatusCode)
 		{

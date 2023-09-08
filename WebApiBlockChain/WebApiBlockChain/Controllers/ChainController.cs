@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using System.Threading.Tasks.Dataflow;
 using WebApiBlockChain.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace WebApiBlockChain.Controllers
 {
@@ -26,7 +28,9 @@ namespace WebApiBlockChain.Controllers
 
 		private readonly EntityGateway _db;
 
-		public static Chain chain = new Chain();
+		private Block ruinblock;
+
+        public static Chain chain = new Chain();
 		public ChainController(EntityGateway db)
 		{
 			_db = db;
@@ -60,7 +64,7 @@ namespace WebApiBlockChain.Controllers
 		[HttpPost]
 		public IActionResult CreateBlock(Block item)
 		{
-			if (ModelState.IsValid)
+            if (ModelState.IsValid)
 			{
 				//Синхронизация с клиентом и проверка BlockChain
 				chain.Blocks = _db.GetBlocks().ToList<Block>();
@@ -76,14 +80,28 @@ namespace WebApiBlockChain.Controllers
 				}
 				else
 				{
-					if (chain.Check())
+					try
 					{
-						chain.Last = chain.Blocks.Last();
-					}
-					else
+                        if (chain.Check(ref ruinblock))
+                        {
+                            chain.Last = chain.Blocks.Last();
+                        }
+                        else
+                        {
+
+                            throw new Exception("Ошибка в получении блоков из базы данных");
+                        }
+                    }
+					catch (Exception) 
 					{
-						throw new Exception("Ошибка в получении блоков из базы данных");
+						return BadRequest(new
+						{
+							status = "ruin blockchain",
+                            last_time_block = DateTime.Now,
+                            blocks = ruinblock
+                        }) ;
 					}
+					
 				}
 
 
