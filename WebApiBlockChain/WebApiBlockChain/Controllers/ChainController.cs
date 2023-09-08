@@ -28,7 +28,7 @@ namespace WebApiBlockChain.Controllers
 
 		private readonly EntityGateway _db;
 
-		private Block ruinblock;
+		private ICollection<Block> ruinblocks = new List<Block>();
 
         public static Chain chain = new Chain();
 		public ChainController(EntityGateway db)
@@ -82,7 +82,7 @@ namespace WebApiBlockChain.Controllers
 				{
 					try
 					{
-                        if (chain.Check(ref ruinblock))
+                        if (chain.Check(ref ruinblocks))
                         {
                             chain.Last = chain.Blocks.Last();
                         }
@@ -97,8 +97,9 @@ namespace WebApiBlockChain.Controllers
 						return BadRequest(new
 						{
 							status = "ruin blockchain",
+                            blocks_count = ruinblocks.Count(),
                             last_time_block = DateTime.Now,
-                            blocks = ruinblock
+                            blocks = ruinblocks
                         }) ;
 					}
 					

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Text;
 using static MauiAppBlockchain.MainPage;
 
@@ -33,7 +34,9 @@ public partial class CreateBlockPage : ContentPage
 		}
 		else
 		{
-			trigger.Text = "Ошибка";
+            var myError = await response.Content.ReadFromJsonAsync<BlocksData>();
+			if(myError.Blocks is IList<Block> ruinblocks)
+				trigger.Text = $"Ошибка\n{myError.Status}\n{myError.Last_time_block}\n{ruinblocks[0].Data}\n{ruinblocks[0].User}";
 		}
 	}
 }
