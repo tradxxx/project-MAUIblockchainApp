@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBlockchain.CreateBlockPage"
+             Title="Создание нового блока">
+
+    <StackLayout>
+        <Entry x:Name="DataEntry"
+               Text="{Binding Data}"
+               Placeholder="Данные"/>
+        <Entry x:Name="UserEntry"
+               Text="{Binding User}"
+               Placeholder="Пользователь"/>
+        <Button Text="Отправить"
+                Clicked="SendFromData"/>
+
+        <Label x:Name="trigger" Text=""/>
+    </StackLayout>
+</ContentPage>

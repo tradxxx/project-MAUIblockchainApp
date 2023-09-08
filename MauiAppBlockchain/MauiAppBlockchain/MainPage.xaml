@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBlockchain.MainPage">
+
+
+    <StackLayout>
+        <Label x:Name="label1"
+               Text="Здесь будет текст"
+               FontSize="Large"
+               VerticalOptions="Start"
+               HorizontalOptions="Center" 
+               Margin="10"/>
+
+        <Label x:Name="label2"
+               Text="Здесь будет сообщение"
+               FontSize="Large"
+               VerticalOptions="Start"
+               HorizontalOptions="Center"
+               Margin="10"/>
+
+        <Button Text="Вызов DB"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Clicked="OnButton2Clicked" 
+                Margin="10"/>
+        
+        <Button Text="Создать новый блок"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Clicked="OnButtonClicked"
+                Margin="10"/>
+
+        <ListView x:Name="blockList" RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation= "Vertical" Padding="20,0,8,1" >
+                            <Label Text="{Binding Id}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Data}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" />
+                            <Label Text="{Binding User}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+
+</ContentPage>
