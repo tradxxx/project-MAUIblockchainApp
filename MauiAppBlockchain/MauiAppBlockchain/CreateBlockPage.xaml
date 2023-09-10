@@ -5,6 +5,7 @@
              Title="Создание нового блока">
 
     <StackLayout>
+        <Label x:Name="errorView" Text=""/>
         <Entry x:Name="DataEntry"
                Text="{Binding Data}"
                Placeholder="Данные"/>
@@ -14,6 +15,6 @@
         <Button Text="Отправить"
                 Clicked="SendFromData"/>
 
-        <Label x:Name="trigger" Text=""/>
+        <Label x:Name="sendView" Text=""/>
     </StackLayout>
 </ContentPage>
