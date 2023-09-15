@@ -48,8 +48,8 @@ public partial class MainPage : ContentPage
 
 	private async void OnButtonClicked(object sender, System.EventArgs e)
 	{
-		// При нажатии кнопки производим переход на CreateBlockPage
-		Navigation.PushAsync(new CreateBlockPage());
+        // При нажатии кнопки производим переход на CreateBlockPage
+        await Navigation.PushAsync(new CreateBlockPage());
 	}
 
 }
