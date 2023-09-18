@@ -31,7 +31,7 @@
                 Clicked="OnButtonClicked"
                 Margin="10"/>
 
-        <ListView x:Name="blockList" RowHeight="100">
+        <!--<ListView x:Name="blockList" RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -43,7 +43,16 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
+
+        <CollectionView x:Name="collectionView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Id}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
 
     </StackLayout>
 

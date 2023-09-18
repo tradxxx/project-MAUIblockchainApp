@@ -31,13 +31,28 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
-	}
-	private async void OnButton2Clicked(object sender, System.EventArgs e)
+
+        collectionView.SelectionChanged += (sender, e) => {
+            if (e.CurrentSelection.Count > 0)
+            {
+                var model = e.CurrentSelection.FirstOrDefault() as Block;
+                DisplayFullInfo(model);
+            }
+        };
+
+    }
+
+    private async void DisplayFullInfo(Block model)
+    {
+		await DisplayAlert($"Блок {model.Id}",$"Данные: {model.Data}\nПользователь: {model.User}", "OK");
+    }
+
+    private async void OnButton2Clicked(object sender, System.EventArgs e)
 	{
 		var client = new HttpClient();
 		string request = await client.GetStringAsync(new Uri("http://192.168.0.12:5153/api/Chain"));
 		var Mychain = JsonConvert.DeserializeObject<BlocksData>(request);
-		blockList.ItemsSource = Mychain.Blocks;
+        collectionView.ItemsSource = Mychain.Blocks;
 		label2.Text = "База данных успешно загружена с веб-службы";
 
 		string Host = System.Net.Dns.GetHostName();
