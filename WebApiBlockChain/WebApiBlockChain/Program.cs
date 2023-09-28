@@ -18,7 +18,17 @@ namespace WebApiBlockChain
 			});
 			builder.Services.AddScoped<EntityGateway>();
 
-			builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
+            builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
@@ -31,6 +41,9 @@ namespace WebApiBlockChain
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+			
+			app.UseCors("AllowAll");
+			app.UseRouting();
 
 			app.UseHttpsRedirection();
 
