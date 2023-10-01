@@ -24,7 +24,7 @@
                 HorizontalOptions="Center"
                 Clicked="OnButton2Clicked" 
                 Margin="10"/>
-        
+
         <Button Text="Создать новый блок"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
@@ -45,10 +45,25 @@
             </ListView.ItemTemplate>
         </ListView>-->
 
-        <CollectionView x:Name="collectionView" SelectionMode="Single">
+        <CollectionView x:Name="collectionView" VerticalOptions="FillAndExpand" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Id}" />
+                    <Border Margin="10" Padding="10" >
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20" />
+                        </Border.StrokeShape>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*"/>
+                                <ColumnDefinition Width=".8*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="lock_outlined_padlock.png" Grid.Column="0" Grid.Row="0"/>
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                <Label Text="{Binding Id}" FontSize="Large" FontFamily="OpenSansSemibold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -33,20 +33,19 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 
         collectionView.SelectionChanged += (sender, e) => {
-            if (e.CurrentSelection.Count > 0)
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
             {
-                var model = e.CurrentSelection.FirstOrDefault() as Block;
-                DisplayFullInfo(model);
+                var selectedElement = e.CurrentSelection[0] as Block; // Получите выбранный элемент
+				DisplayFullInfoBlock(selectedElement);                                 // Выполните нужные действия с выбранным элементом
             }
         };
 
     }
-
-    private async void DisplayFullInfo(Block model)
+    private async void DisplayFullInfoBlock(Block model)
     {
 		await DisplayAlert($"Блок {model.Id}",$"Данные: {model.Data}\nПользователь: {model.User}", "OK");
     }
-
+    
     private async void OnButton2Clicked(object sender, System.EventArgs e)
 	{
 		var client = new HttpClient();
