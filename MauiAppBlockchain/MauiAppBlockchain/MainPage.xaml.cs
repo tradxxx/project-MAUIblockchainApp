@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using MauiAppBlockchain.Service;
 
 namespace MauiAppBlockchain;
 
 public partial class MainPage : ContentPage
 {
-
-	public class Block
+	private readonly СonnectionService сonnectionService;
+    public class Block
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int? Id { get; set; }
@@ -31,6 +32,8 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+
+        сonnectionService = new СonnectionService(new HttpClient());
 
         collectionView.SelectionChanged += (sender, e) => {
             if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)

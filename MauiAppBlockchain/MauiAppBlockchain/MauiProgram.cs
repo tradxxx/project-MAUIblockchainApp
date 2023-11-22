@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiAppBlockchain.Service;
+using Microsoft.Extensions.Logging;
 
 namespace MauiAppBlockchain;
 
@@ -14,7 +15,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
+        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.43.175:5153/") });
+        builder.Services.AddScoped<СonnectionService>();
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
