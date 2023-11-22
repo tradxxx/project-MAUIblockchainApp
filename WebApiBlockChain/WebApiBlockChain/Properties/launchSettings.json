@@ -14,7 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://192.168.0.12:5153", //IP Устройства на котором находится сервер
+      "applicationUrl": "http://192.168.43.175:5153", //IP Устройства на котором находится сервер
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

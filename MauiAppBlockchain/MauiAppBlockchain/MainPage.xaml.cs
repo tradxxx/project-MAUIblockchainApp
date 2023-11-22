@@ -49,7 +49,7 @@ public partial class MainPage : ContentPage
     private async void OnButton2Clicked(object sender, System.EventArgs e)
 	{
 		var client = new HttpClient();
-		string request = await client.GetStringAsync(new Uri("http://192.168.0.12:5153/api/Chain"));
+		string request = await client.GetStringAsync(new Uri("http://192.168.43.175:5153/api/Chain"));
 		var Mychain = JsonConvert.DeserializeObject<BlocksData>(request);
         collectionView.ItemsSource = Mychain.Blocks;
 		label2.Text = "База данных успешно загружена с веб-службы";
