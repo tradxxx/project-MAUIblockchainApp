@@ -9,9 +9,11 @@ namespace MauiAppBlockchain;
 
 public partial class CreateBlockPage : ContentPage
 {
-    public CreateBlockPage()
+    private readonly ÑonnectionService ñonnectionService;
+    public CreateBlockPage(ÑonnectionService ñonnection)
     {
         InitializeComponent();
+        ñonnectionService = ñonnection;
     }
 
     private async void SendFromData(object sender, EventArgs e)
@@ -27,10 +29,9 @@ public partial class CreateBlockPage : ContentPage
 
         if (ValidatorData.ValidateCheckData(block, errorView)) 
         {
-            HttpClient client = new HttpClient();
             var json = JsonConvert.SerializeObject(block);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://192.168.43.175:5153/api/Chain", content);
+            var response = await ñonnectionService.CreateBlock(content);
 
             if (response.IsSuccessStatusCode)
             {
