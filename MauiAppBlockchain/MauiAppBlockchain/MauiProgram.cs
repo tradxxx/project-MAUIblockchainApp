@@ -17,8 +17,9 @@ public static class MauiProgram
 			});
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.43.175:5153/") });
         builder.Services.AddScoped<СonnectionService>();
+        builder.Services.AddScoped<MainPage>();
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

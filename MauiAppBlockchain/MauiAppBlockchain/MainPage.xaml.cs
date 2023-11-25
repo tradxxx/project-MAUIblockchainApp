@@ -29,11 +29,11 @@ public partial class MainPage : ContentPage
 		public IEnumerable<Block> Blocks { get; set; }
 	}
 
-	public MainPage()
+	public MainPage(СonnectionService сonnection)
 	{
 		InitializeComponent();
 
-        сonnectionService = new СonnectionService(new HttpClient());
+        сonnectionService = сonnection;
 
         collectionView.SelectionChanged += (sender, e) => {
             if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
@@ -51,8 +51,7 @@ public partial class MainPage : ContentPage
     
     private async void OnButton2Clicked(object sender, System.EventArgs e)
 	{
-		var client = new HttpClient();
-		string request = await client.GetStringAsync(new Uri("http://192.168.43.175:5153/api/Chain"));
+		string request = await сonnectionService.GetBlocks();
 		var Mychain = JsonConvert.DeserializeObject<BlocksData>(request);
         collectionView.ItemsSource = Mychain.Blocks;
 		label2.Text = "База данных успешно загружена с веб-службы";

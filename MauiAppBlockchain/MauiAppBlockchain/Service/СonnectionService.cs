@@ -14,14 +14,14 @@ namespace MauiAppBlockchain.Service
             _httpClient = httpClient;
         }
 
-        public Task<string> GetBlocks()
+        public async Task<string> GetBlocks()
         {
-            return _httpClient.GetStringAsync(new Uri("api/Chain"));
+            return await _httpClient.GetStringAsync("api/Chain");
         }
 
-        public Task<HttpResponseMessage> CreateBlock(HttpContent content)
+        public async Task<HttpResponseMessage> CreateBlock(HttpContent content)
         {
-            return _httpClient.PostAsync("api/Chain", content);
+            return await _httpClient.PostAsync("api/Chain", content);
         }
     }
 }
