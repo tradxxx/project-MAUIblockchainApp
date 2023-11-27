@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using MauiAppBlockchain.Models;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

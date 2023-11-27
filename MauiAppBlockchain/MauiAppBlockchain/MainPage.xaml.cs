@@ -37,11 +37,11 @@ public partial class MainPage : ContentPage
         collectionView.ItemsSource = Mychain.Blocks;
 		label2.Text = "База данных успешно загружена с веб-службы";
 
-		string Host = System.Net.Dns.GetHostName();
-		string IP = System.Net.Dns.GetHostByName(Host).AddressList[0].ToString();
-		label1.Text = Host + "  " + IP;
+		
+		labelIPHost.Text += await сonnectionService.GetIpHost();
 
-	}
+
+    }
 
 	private async void OnButtonClicked(object sender, System.EventArgs e)
 	{

@@ -5,8 +5,8 @@
 
 
     <StackLayout>
-        <Label x:Name="label1"
-               Text="Здесь будет текст"
+        <Label x:Name="labelIPHost"
+               Text="IP-Host: "
                FontSize="Large"
                VerticalOptions="Start"
                HorizontalOptions="Center" 
