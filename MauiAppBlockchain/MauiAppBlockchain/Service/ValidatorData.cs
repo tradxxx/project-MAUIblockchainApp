@@ -20,8 +20,7 @@ namespace MauiAppBlockchain.Service
 
             if (!Validator.TryValidateObject(block, context, results, true))
             {
-                label.TextColor = Color.FromRgb(255, 0, 0); 
-                label.Text = "Не удалось создать объект Block";
+                DisplayArtService.PrintLabelStatus(label, "Не удалось создать объект Block", LabelStatus.Error);
                 foreach (var error in results)
                 {           
                     label.Text += $"\n{error.ErrorMessage}";
@@ -30,8 +29,7 @@ namespace MauiAppBlockchain.Service
             }
             else
             {
-                label.TextColor = Color.FromRgb(0, 255, 0);
-                label.Text = ($"Объект Block успешно сформирован");
+                DisplayArtService.PrintLabelStatus(label, "Объект Block успешно сформирован", LabelStatus.Success);                
                 return true;
             }
 

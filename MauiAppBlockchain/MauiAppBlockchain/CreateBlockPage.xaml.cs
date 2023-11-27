@@ -39,8 +39,11 @@ public partial class CreateBlockPage : ContentPage
             }
             else
             {
-                //Вывод информации про фальшивый блок
-                var myError = await response.Content.ReadFromJsonAsync<BlocksData>();
+
+                DisplayArtService.PrintLabelStatus(errorView, "Ошибка отправки", LabelStatus.Error);
+
+               //Вывод информации про фальшивый блок
+               var myError = await response.Content.ReadFromJsonAsync<BlocksData>();
                 if (myError.Blocks is IList<Block> ruinblocks)
                     sendView.Text = $"Ошибка:\n{myError.Status}\nВремя: {ruinblocks[0].Created}\nДанные: {ruinblocks[0].Data}\n{ruinblocks[0].User}";
             }
