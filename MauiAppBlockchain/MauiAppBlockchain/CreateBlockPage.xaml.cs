@@ -27,7 +27,7 @@ public partial class CreateBlockPage : ContentPage
             User = UserEntry.Text
         };
 
-        if (ValidatorData.ValidateCheckData(block, errorView)) 
+        if (ValidatorData.ValidateCheckData(block, errorView))
         {
             var json = JsonConvert.SerializeObject(block);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -42,10 +42,14 @@ public partial class CreateBlockPage : ContentPage
 
                 DisplayArtService.PrintLabelStatus(errorView, "Ошибка отправки", LabelStatus.Error);
 
-               //Вывод информации про фальшивый блок
-               var myError = await response.Content.ReadFromJsonAsync<BlocksData>();
-                if (myError.Blocks is IList<Block> ruinblocks)
-                    sendView.Text = $"Ошибка:\n{myError.Status}\nВремя: {ruinblocks[0].Created}\nДанные: {ruinblocks[0].Data}\n{ruinblocks[0].User}";
+                //Вывод информации про фальшивый блок
+                var myErrorData = await response.Content.ReadFromJsonAsync<BlocksData>();
+
+                var ruinblocks = myErrorData.Blocks as IList<Block>;
+                sendView.FontFamily = "OpenSansSemibold";
+                sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Created}\nДанные: {ruinblocks[0].Data}\nПользователь: {ruinblocks[0].User}";
+
+
             }
         }
     }
