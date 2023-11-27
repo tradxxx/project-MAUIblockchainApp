@@ -1,3 +1,4 @@
+using MauiAppBlockchain.Models;
 using MauiAppBlockchain.Service;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
