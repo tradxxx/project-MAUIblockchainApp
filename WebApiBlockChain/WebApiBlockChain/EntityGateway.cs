@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
 
 namespace WebApiBlockChain
@@ -14,7 +15,7 @@ namespace WebApiBlockChain
 		}
 
 		public IEnumerable<Block> GetBlocks(Func<Block, bool> predicate) =>
-		  _db.Blocks.AsTracking().Include(b => b.Expense);
+		  _db.Blocks.Where(predicate).ToArray();
 		public IEnumerable<Block> GetBlocks() =>
 			GetBlocks((x) => true);
 

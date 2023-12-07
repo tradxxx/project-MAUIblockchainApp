@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
 
 namespace WebApiBlockChain
