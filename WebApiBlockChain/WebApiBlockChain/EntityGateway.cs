@@ -14,7 +14,7 @@ namespace WebApiBlockChain
 		}
 
 		public IEnumerable<Block> GetBlocks(Func<Block, bool> predicate) =>
-		  _db.Blocks.Where(predicate).ToArray();
+		  _db.Blocks.AsTracking().Include(b => b.Expense);
 		public IEnumerable<Block> GetBlocks() =>
 			GetBlocks((x) => true);
 
