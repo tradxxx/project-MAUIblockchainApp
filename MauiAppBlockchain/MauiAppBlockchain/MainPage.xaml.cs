@@ -27,13 +27,12 @@ public partial class MainPage : ContentPage
     }
     private async void DisplayFullInfoBlock(Block model)
     {
-		await DisplayAlert($"Блок {model.Id}",$"Данные: {model.Data}\nПользователь: {model.User}", "OK");
+		await DisplayAlert($"Блок {model.Id}",$"Cумма: {model.Amount}\nОписание: {model.Description}\nВремя:{model.Date}\nКатегория: {model.Category.Title}\nПользователь: {model.User.Name}", "OK");
     }
     
     private async void OnButton2Clicked(object sender, System.EventArgs e)
 	{
-		string request = await сonnectionService.GetBlocks();
-		var Mychain = JsonConvert.DeserializeObject<BlocksData>(request);
+		var Mychain = await сonnectionService.GetBlocks();
         collectionView.ItemsSource = Mychain.Blocks;
 		label2.Text = "База данных успешно загружена с веб-службы";
 

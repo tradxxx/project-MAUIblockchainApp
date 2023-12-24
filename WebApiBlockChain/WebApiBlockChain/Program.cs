@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
+using WebApiBlockChain.Service;
 
 namespace WebApiBlockChain
 {
@@ -17,7 +18,8 @@ namespace WebApiBlockChain
 			{
 				options.UseSqlServer(builder.Configuration["ConnectionStrings:DbConnection"]);
 			});
-			builder.Services.AddScoped<EntityGateway>();
+            builder.Services.AddScoped<IBlockService,BlockService>();
+            builder.Services.AddScoped<EntityGateway>();
 
             builder.Services.AddCors(options =>
             {

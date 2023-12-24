@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Threading.Tasks.Dataflow;
 using WebApiBlockChain.Models;
+using WebApiBlockChain.Service;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace WebApiBlockChain.Controllers
@@ -12,29 +13,20 @@ namespace WebApiBlockChain.Controllers
 	[ApiController]
 	public class ChainController : ControllerBase
 	{
-		//private readonly BlockchainContext _db;
-
-		//public ChainController(BlockchainContext context)
-		//{
-		//	_db = context;
-		//}
-
-		//[HttpGet]
-		//public IActionResult Get()
-		//{
-		//	return new ObjectResult( _db.Blocks.ToList());
-		//}
-
-
 		private readonly EntityGateway _db;
+		private readonly IBlockService _sevice;
 
-		private ICollection<Block> ruinblocks = new List<Block>();
+        public static Chain chain;
 
-        public static Chain chain = new Chain();
-		public ChainController(EntityGateway db)
+        private ICollection<Block> ruinblocks = new List<Block>();
+
+		
+		public ChainController(EntityGateway db, IBlockService service)
 		{
 			_db = db;
-		}
+			_sevice = service;
+            chain = new Chain(service);
+        }
 
 		[HttpGet]
 		public IActionResult GetAll()
@@ -48,12 +40,12 @@ namespace WebApiBlockChain.Controllers
 			}
 			else
 			{
-				last_time = blocks.Last().Created;
+				last_time = blocks.Last().Date;
 			}
 
 			return Ok(new
 			{
-				status="ok",
+				status = "ok",
 				blocks_count = blocks.Count(),
 				last_time_block = last_time,
 				blocks = blocks
@@ -71,7 +63,17 @@ namespace WebApiBlockChain.Controllers
 
 				if (chain.Blocks.Count() == 0)
 				{
-					var genesisBlock = new Block();
+					var genesisBlock = new Block() 
+					{
+                        Amount = 0,
+						Description = "Генезис",
+						Date = DateTime.Now,
+						Category = new Category() { Title = "Генезис", Icon = "Генезис" },
+						User = new User() { Name = "Admin"},						
+                    };
+
+                    genesisBlock.PreviousHash = "1";
+                    genesisBlock.Hash = _sevice.GetDataHash(genesisBlock);		
 
 					chain.Blocks.Add(genesisBlock);
 					chain.Last = genesisBlock;
@@ -103,7 +105,7 @@ namespace WebApiBlockChain.Controllers
                         }) ;
 					}
 					
-				}
+				} 
 
 
 
@@ -115,13 +117,19 @@ namespace WebApiBlockChain.Controllers
 						context = "item is null"
 					});
 				}
-				Block block = new Block(item.Data, item.User, chain.Last);
-				chain.Last = block;
-				//block.Id = null;
 
-				_db.Add(block);
+				item.PreviousHash = chain.Last.Hash;
 
-				//var blocks = _context.Blocks;
+				var user = _db.GetUsers(x=>x.Id ==item.UserId).FirstOrDefault();
+				var category = _db.GetCategories(x => x.Id == item.CategoryId).FirstOrDefault();
+
+                var newblock = _sevice.CreateBlock(item, category, user);
+
+                chain.Last = newblock;			
+
+				_db.Add(newblock);
+
+				
 				return Ok(new
 				{
 					status="Okey"

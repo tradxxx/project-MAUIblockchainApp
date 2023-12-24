@@ -19,8 +19,16 @@ namespace WebApiBlockChain
 		public IEnumerable<Block> GetBlocks() =>
 			GetBlocks((x) => true);
 
-		
-		public void Add(Block block)
+        public IEnumerable<User> GetUsers(Func<User, bool> predicate) =>
+          _db.Users.Where(predicate).ToArray();
+        public IEnumerable<User> GetUsers() =>
+            GetUsers((x) => true);
+        public IEnumerable<Category> GetCategories(Func<Category, bool> predicate) =>
+          _db.Categories.Where(predicate).ToArray();
+        public IEnumerable<Category> GetCategories() =>
+            GetCategories((x) => true);
+
+        public void Add(Block block)
 		{
 			_db.Blocks.Add(block);
 			_db.SaveChanges();

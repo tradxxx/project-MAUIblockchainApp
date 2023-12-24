@@ -21,12 +21,31 @@ public partial class CreateBlockPage : ContentPage
     {
         Block block = new Block
         {
-            Data = DataEntry.Text,
-            Created = DateTime.Now,
-            Hash = string.Empty,
-            PreviousHash = string.Empty,
-            User = UserEntry.Text
+            Amount = Convert.ToDecimal(AmountEntry.Text),
+            Description = DescriptionEntry.Text
         };
+
+        var categories = await сonnectionService.GetCategories();
+        var users = await сonnectionService.GetUsers();
+
+        var category = categories.FirstOrDefault(x => x.Title == СategoryEntry.Text);
+        var user = users.FirstOrDefault(x => x.Name == UserEntry.Text);
+
+        if (category == null)
+        {
+            DisplayArtService.PrintLabelStatus(errorView, "Не найдена категория", LabelStatus.Error);
+        }
+        else if (user == null)
+        {
+            DisplayArtService.PrintLabelStatus(errorView, "Не найден пользователь", LabelStatus.Error);
+            
+        }
+        else
+        {
+            block.CategoryId = category.Id;
+            block.UserId = user.Id;
+
+        }
 
         if (ValidatorData.ValidateCheckData(block, errorView))
         {
@@ -48,7 +67,7 @@ public partial class CreateBlockPage : ContentPage
 
                 var ruinblocks = myErrorData.Blocks as IList<Block>;
                 sendView.FontFamily = "OpenSansSemibold";
-                sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Created}\nДанные: {ruinblocks[0].Data}\nПользователь: {ruinblocks[0].User}";
+                sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
 
 
             }

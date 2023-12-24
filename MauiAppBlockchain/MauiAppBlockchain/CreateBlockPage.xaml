@@ -6,9 +6,20 @@
 
     <StackLayout>
         <Label x:Name="errorView" Text=""/>
-        <Entry x:Name="DataEntry"
-               Text="{Binding Data}"
-               Placeholder="Данные"/>
+        <Entry x:Name="AmountEntry"
+               Text="{Binding Amount}"
+               Placeholder="Сумма"/>
+        <Label x:Name="labelIPHost"
+                Text="IP-Host: "
+               FontSize="Title"
+               TextColor="DarkOrange"
+                Margin="10"/>
+        <Entry x:Name="DescriptionEntry"
+               Text="{Binding Description}"
+               Placeholder="Описание"/>
+        <Entry x:Name="СategoryEntry"
+               Text="{Binding Сategory}"
+               Placeholder="Категория"/>
         <Entry x:Name="UserEntry"
                Text="{Binding User}"
                Placeholder="Пользователь"/>

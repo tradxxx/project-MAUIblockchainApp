@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MauiAppBlockchain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +16,18 @@ namespace MauiAppBlockchain.Service
             _httpClient = httpClient;
         }
 
-        public async Task<string> GetBlocks()
+        public async Task<BlocksData> GetBlocks()
         {
-            return await _httpClient.GetStringAsync("api/Chain");
+            return await _httpClient.GetFromJsonAsync<BlocksData>("api/Chain");
+        }
+
+        public async Task<IEnumerable<Category>> GetCategories()
+        {         
+            return await _httpClient.GetFromJsonAsync<IEnumerable<Category>>("api/Category");
+        }
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<User>>("api/User");
         }
 
         public async Task<HttpResponseMessage> CreateBlock(HttpContent content)
