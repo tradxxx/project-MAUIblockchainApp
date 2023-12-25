@@ -21,8 +21,10 @@ namespace WebApiBlockChain.Service
             result += block.Description;
             //Нельзя использовать тк при проверке хэшей в реальном времени в Функции Check генерирется текущее время, а не время создания блока, что приводит к несовпадению хэшей
             result += block.Date.ToString("dd.MM.yyyy HH:mm:ss.f");
+            result += block.CategoryId;
             result += block.Category.Title;
             result += block.Category.Icon;
+            result += block.UserId;
             result += block.User.Name;
             result += block.PreviousHash;
 
@@ -59,8 +61,10 @@ namespace WebApiBlockChain.Service
             result += block.Description;
             //Нельзя использовать тк при проверке хэшей в реальном времени в Функции Check генерирется текущее время, а не время создания блока, что приводит к несовпадению хэшей
             result += time.ToString("dd.MM.yyyy HH:mm:ss.f");
+            result += block.CategoryId;
             result += block.Category.Title;
             result += block.Category.Icon;
+            result += block.UserId;
             result += block.User.Name;
             result += block.PreviousHash;
 

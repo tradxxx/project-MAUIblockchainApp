@@ -45,33 +45,35 @@ public partial class CreateBlockPage : ContentPage
             block.CategoryId = category.Id;
             block.UserId = user.Id;
 
+            if (ValidatorData.ValidateCheckData(block, errorView))
+            {
+                var json = JsonConvert.SerializeObject(block);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await сonnectionService.CreateBlock(content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    sendView.Text = "Успех";
+                }
+                else
+                {
+
+                    DisplayArtService.PrintLabelStatus(errorView, "Ошибка отправки", LabelStatus.Error);
+
+                    //Вывод информации про фальшивый блок
+                    var myErrorData = await response.Content.ReadFromJsonAsync<BlocksData>();
+
+                    var ruinblocks = myErrorData.Blocks as IList<Block>;
+                    sendView.FontFamily = "OpenSansSemibold";
+                    sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nСумма: {ruinblocks[0].Amount}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
+
+
+                }
+            }
+
         }
 
-        if (ValidatorData.ValidateCheckData(block, errorView))
-        {
-            var json = JsonConvert.SerializeObject(block);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await сonnectionService.CreateBlock(content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                sendView.Text = "Успех";
-            }
-            else
-            {
-
-                DisplayArtService.PrintLabelStatus(errorView, "Ошибка отправки", LabelStatus.Error);
-
-                //Вывод информации про фальшивый блок
-                var myErrorData = await response.Content.ReadFromJsonAsync<BlocksData>();
-
-                var ruinblocks = myErrorData.Blocks as IList<Block>;
-                sendView.FontFamily = "OpenSansSemibold";
-                sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
-
-
-            }
-        }
+       
     }
 
 
