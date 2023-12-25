@@ -17,9 +17,15 @@
         <Entry x:Name="DescriptionEntry"
                Text="{Binding Description}"
                Placeholder="Описание"/>
+        
+        <!--<Picker x:Name="pickerCategories" Title="Select Category"
+                ItemsSource="{Binding categories}"
+                ItemDisplayBinding="{Binding Title}"/>-->
+        
         <Entry x:Name="СategoryEntry"
                Text="{Binding Сategory}"
                Placeholder="Категория"/>
+
         <Entry x:Name="UserEntry"
                Text="{Binding User}"
                Placeholder="Пользователь"/>

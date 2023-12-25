@@ -35,7 +35,7 @@ namespace WebApiBlockChain.Models
                     return false;
                 }
                 //Проверка связи (пересчёт хэша)
-                if (Blocks[i].PreviousHash != _service.GetDataHash(Blocks[i-1], Blocks[i-1].Date))
+                if (Blocks[i].PreviousHash != _service.GetDataHash(Blocks[i-1], Blocks[i-1].Date) && (i-1) != 0) //(i-1)=0 чтобы не проверять генезис блок
                 {
                     ruinblocks.Add(Blocks[i]);
                     return false;

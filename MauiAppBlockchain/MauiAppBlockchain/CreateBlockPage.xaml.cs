@@ -11,12 +11,31 @@ namespace MauiAppBlockchain;
 public partial class CreateBlockPage : ContentPage
 {
     private readonly ÑonnectionService ñonnectionService;
+    private readonly Task<IEnumerable<Category>> _categories;
+    private readonly Task<IEnumerable<User>> _users;
+    private IList<Category> categories;
+    private IList<User> users;
+
     public CreateBlockPage(ÑonnectionService ñonnection)
     {
         InitializeComponent();
+        
         ñonnectionService = ñonnection;
-    }
 
+        _categories = ñonnectionService.GetCategories();
+        _users = ñonnectionService.GetUsers();
+
+        AsyncHelperCategory();
+        AsyncHelperUser();      
+    }
+    async void AsyncHelperCategory()
+    {
+        categories = (IList<Category>)await _categories;    
+    }
+    async void AsyncHelperUser()
+    {
+        users = (IList<User>)await _users;
+    }
     private async void SendFromData(object sender, EventArgs e)
     {
         Block block = new Block
@@ -25,11 +44,9 @@ public partial class CreateBlockPage : ContentPage
             Description = DescriptionEntry.Text
         };
 
-        var categories = await ñonnectionService.GetCategories();
-        var users = await ñonnectionService.GetUsers();
-
-        var category = categories.FirstOrDefault(x => x.Title == ÑategoryEntry.Text);
-        var user = users.FirstOrDefault(x => x.Name == UserEntry.Text);
+        
+        var category = categories.FirstOrDefault(x => x.Title == ÑategoryEntry.Text.Trim());
+        var user = users.FirstOrDefault(x => x.Name == UserEntry.Text.Trim());
 
         if (category == null)
         {
