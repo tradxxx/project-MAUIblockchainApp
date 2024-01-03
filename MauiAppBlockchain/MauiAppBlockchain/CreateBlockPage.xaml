@@ -5,26 +5,32 @@
              Title="Создание нового блока">
 
     <StackLayout>
-        <Label x:Name="errorView" Text=""/>
+        <Label x:Name="errorView" Text=""
+               Margin="20"/>
         <Entry x:Name="AmountEntry"
                Text="{Binding Amount}"
-               Placeholder="Сумма"/>
+               Placeholder="Сумма"
+               Keyboard="Numeric"
+               Margin="20"/>
         <Label x:Name="labelIPHost"
                 Text="IP-Host: "
                FontSize="Title"
                TextColor="DarkOrange"
-                Margin="10"/>
+                Margin="20"/>
         <Entry x:Name="DescriptionEntry"
                Text="{Binding Description}"
-               Placeholder="Описание"/>
+               Placeholder="Описание"
+               Margin="20"/>
 
         <Picker x:Name="pickerCategories" Title="Выберите категорию"
                 ItemsSource="{Binding Categories}"
-                ItemDisplayBinding="{Binding Title}"/>
+                ItemDisplayBinding="{Binding Title}"
+                Margin="20"/>
 
         <Picker x:Name="pickerUsers" Title="Выберите пользователя"
                 ItemsSource="{Binding Users}"
-                ItemDisplayBinding="{Binding Name}"/>
+                ItemDisplayBinding="{Binding Name}"
+                Margin="20"/>
         
         <Button Text="Отправить"
                 Clicked="SendFromData"/>

@@ -37,7 +37,7 @@ public partial class MainPage : ContentPage
 		label2.Text = "База данных успешно загружена с веб-службы";
 
 		
-		labelIPHost.Text += await сonnectionService.GetIpHost();
+		labelIPHost.Text = await сonnectionService.GetIpHost();
 
 
     }

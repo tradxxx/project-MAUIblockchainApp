@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
 using System.Text;
-using static MauiAppBlockchain.MainPage;
 
 namespace MauiAppBlockchain;
 
