@@ -31,19 +31,18 @@
                 Clicked="OnButtonClicked"
                 Margin="10"/>
 
-        <!--<ListView x:Name="blockList" RowHeight="100">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation= "Vertical" Padding="20,0,8,1" >
-                            <Label Text="{Binding Id}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Data}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" />
-                            <Label Text="{Binding User}" TextColor="#000" FontSize="20" LineBreakMode="TailTruncation" VerticalOptions="StartAndExpand" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
+        <Button Text="Создать новую категорию"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Clicked="OnButton3Clicked"
+                Margin="10"/>
+
+        <Button Text="Создать нового пользователя"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Clicked="OnButton4Clicked"
+                Margin="10"/>
+
 
         <CollectionView x:Name="collectionView" VerticalOptions="FillAndExpand" SelectionMode="Single">
             <CollectionView.ItemTemplate>

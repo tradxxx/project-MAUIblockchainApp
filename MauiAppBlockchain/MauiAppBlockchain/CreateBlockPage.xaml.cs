@@ -100,7 +100,7 @@ public partial class CreateBlockPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                sendView.Text = "Успех";
+                DisplayArtService.PrintLabelStatus(sendView, "Успех", LabelStatus.Success);
             }
             else
             {

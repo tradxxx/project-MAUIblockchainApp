@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBlockchain.CreateCategoryPage"
+             Title="Создание новой категории">
+    <StackLayout>
+        <Label x:Name="errorView" Text=""
+           Margin="20"/>
+        <Entry x:Name="TitleEntry"
+           Text="{Binding Title}"
+           Placeholder="Название"        
+           Margin="20"/>
+        <Entry x:Name="IconEntry"
+           Text="{Binding Icon}"
+           Placeholder="Изображение"
+           Margin="20"/>
+
+        <Button Text="Отправить"
+        Clicked="SendFromData"/>
+
+        <Label x:Name="sendView" Text=""
+               Margin="20"/>
+    </StackLayout>
+</ContentPage>
