@@ -6,9 +6,31 @@
     xmlns:local="clr-namespace:MauiAppBlockchain"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Blockchain приложение"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        
+        <Tab Title="Главная" Icon="dotnet_bot.svg">
+            <ShellContent
+                 Title="Blockchain приложение"
+                 ContentTemplate="{DataTemplate local:MainPage}"
+                 Route="MainPage" />
+        </Tab>
+        
+        <Tab Title="Создание" Icon="dotnet_bot.svg">
+            <ShellContent
+                Title="Создание нового блока"
+                ContentTemplate="{DataTemplate local:CreateBlockPage}"
+                Route="CreateBlockPage" />
+            <ShellContent
+                Title="Создание новой категории"
+                ContentTemplate="{DataTemplate local:CreateCategoryPage}"
+                Route="CreateCategoryPage" />
+
+            <ShellContent
+                Title="Создание нового пользователя"
+                ContentTemplate="{DataTemplate local:CreateUserPage}"
+                Route="CreateUserPage" />
+        </Tab>
+    </TabBar>
+   
 
 </Shell>
