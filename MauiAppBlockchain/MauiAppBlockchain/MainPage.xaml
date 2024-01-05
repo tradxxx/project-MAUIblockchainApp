@@ -25,7 +25,7 @@
                 Clicked="OnButton2Clicked" 
                 Margin="10"/>
 
-        <Button Text="Создать новый блок"
+        <!--<Button Text="Создать новый блок"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked"
@@ -41,7 +41,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
                 Clicked="OnButton4Clicked"
-                Margin="10"/>
+                Margin="10"/>-->
 
 
         <CollectionView x:Name="collectionView" VerticalOptions="FillAndExpand" SelectionMode="Single">

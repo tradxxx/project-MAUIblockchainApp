@@ -58,13 +58,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CreateBlockPage.xaml">
+	  <MauiXaml Update="CreatePages\CreateBlockPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateCategoryPage.xaml">
+	  <MauiXaml Update="CreatePages\CreateCategoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateUserPage.xaml">
+	  <MauiXaml Update="CreatePages\CreateUserPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SearchBlockPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

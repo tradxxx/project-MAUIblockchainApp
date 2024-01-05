@@ -30,6 +30,13 @@
                 ContentTemplate="{DataTemplate local:CreateUserPage}"
                 Route="CreateUserPage" />
         </Tab>
+
+        <Tab Title="Поиск" Icon="dotnet_bot.svg">
+            <ShellContent
+                Title="Поиск блока в цепи"
+                ContentTemplate="{DataTemplate local:SearchBlockPage}"
+                Route="SearchBlockPage" />
+        </Tab>
     </TabBar>
    
 

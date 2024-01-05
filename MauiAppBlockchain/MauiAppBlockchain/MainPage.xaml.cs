@@ -3,12 +3,14 @@ using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using MauiAppBlockchain.Service;
 using MauiAppBlockchain.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace MauiAppBlockchain;
 
 public partial class MainPage : ContentPage
 {
     private readonly СonnectionService сonnectionService;
+    public IEnumerable<Block> Blocks { get; set; }
 
     public MainPage(СonnectionService сonnection)
     {
@@ -34,7 +36,8 @@ public partial class MainPage : ContentPage
     private async void OnButton2Clicked(object sender, System.EventArgs e)
     {
         var Mychain = await сonnectionService.GetBlocks();
-        collectionView.ItemsSource = Mychain.Blocks;
+        Blocks = Mychain.Blocks;
+        collectionView.ItemsSource = Blocks;
         label2.Text = "База данных успешно загружена с веб-службы";
 
 

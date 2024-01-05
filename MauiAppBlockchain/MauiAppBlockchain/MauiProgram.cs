@@ -21,6 +21,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<CreateBlockPage>();
         builder.Services.AddSingleton<CreateCategoryPage>();
         builder.Services.AddSingleton<CreateUserPage>();
+        builder.Services.AddSingleton<SearchBlockPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

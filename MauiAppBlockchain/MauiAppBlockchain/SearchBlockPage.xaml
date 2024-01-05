@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBlockchain.SearchBlockPage">
+    
+    
+    <ScrollView>
+        <StackLayout>
+            <Picker x:Name="pickerSelectSearchItem" Title="Выберите предмет поиска"
+                     SelectedIndexChanged="PickerSelectedIndexChanged"                
+                     Margin="20">
+                <Picker.Items>
+                    <x:String>Категория</x:String>
+                    <x:String>Пользователь</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Picker x:Name="pickerItems" 
+                     SelectedIndexChanged="PickerSelectedItem"
+                     Margin="20"/>
+
+
+            <CollectionView x:Name="collectionView" VerticalOptions="FillAndExpand" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" Padding="10" >
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20" />
+                            </Border.StrokeShape>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".2*"/>
+                                    <ColumnDefinition Width=".8*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="lock_outlined_padlock.png" Grid.Column="0" Grid.Row="0"/>
+                                <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                    <Label Text="{Binding Id}" FontSize="Large" FontFamily="OpenSansSemibold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -2,39 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBlockchain.CreateBlockPage">
-
-    <StackLayout>
-        <Label x:Name="errorView" Text=""
+    <ScrollView>
+        <StackLayout>
+            <Label x:Name="errorView" Text=""
                Margin="20"/>
-        <Entry x:Name="AmountEntry"
+            <Entry x:Name="AmountEntry"
                Text="{Binding Amount}"
                Placeholder="Сумма"
                Keyboard="Numeric"
                Margin="20"/>
-        <Label x:Name="labelIPHost"
+            <Label x:Name="labelIPHost"
                 Text="IP-Host: "
                FontSize="Title"
                TextColor="DarkOrange"
                 Margin="20"/>
-        <Entry x:Name="DescriptionEntry"
+            <Entry x:Name="DescriptionEntry"
                Text="{Binding Description}"
                Placeholder="Описание"
                Margin="20"/>
 
-        <Picker x:Name="pickerCategories" Title="Выберите категорию"
+            <Picker x:Name="pickerCategories" Title="Выберите категорию"
                 ItemsSource="{Binding Categories}"
                 ItemDisplayBinding="{Binding Title}"
                 Margin="20"/>
 
-        <Picker x:Name="pickerUsers" Title="Выберите пользователя"
+            <Picker x:Name="pickerUsers" Title="Выберите пользователя"
                 ItemsSource="{Binding Users}"
                 ItemDisplayBinding="{Binding Name}"
                 Margin="20"/>
-        
-        <Button Text="Отправить"
+
+            <Button Text="Отправить"
                 Clicked="SendFromData"/>
 
-        <Label x:Name="sendView" Text=""
+            <Label x:Name="sendView" Text=""
                Margin="20"/>
-    </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
