@@ -66,22 +66,27 @@ public partial class SearchBlockPage : ContentPage
             default:
                 break;
         }
+
+        
     }
 
     void PickerSelectedItem(object sender, EventArgs e)
     {
         IEnumerable<Block> searchBlocks = null;
 
-        switch (index)
+        if (pickerItems.SelectedItem != null)
         {
-            case SelectIndex.Категория:
-                searchBlocks = Blocks.Where(block => block.Category.Title == (pickerItems.SelectedItem as Category).Title).ToList();
-                break;
-            case SelectIndex.Пользователь:
-                searchBlocks = Blocks.Where(block => block.User.Name == (pickerItems.SelectedItem as User).Name).ToList();
-                break;
-            default:
-                break;
+            switch (index)
+            {
+                case SelectIndex.Категория:
+                    searchBlocks = Blocks.Where(block => block.Category.Title == (pickerItems.SelectedItem as Category).Title).ToList();
+                    break;
+                case SelectIndex.Пользователь:
+                    searchBlocks = Blocks.Where(block => block.User.Name == (pickerItems.SelectedItem as User).Name).ToList();
+                    break;
+                default:
+                    break;
+            }
         }
 
         collectionView.ItemsSource = searchBlocks;
