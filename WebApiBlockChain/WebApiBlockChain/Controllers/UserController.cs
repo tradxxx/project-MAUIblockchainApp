@@ -77,21 +77,20 @@ namespace WebApiBlockChain.Controllers
 
             // Создаем объект ClaimsIdentity и устанавливаем его в HttpContext.User
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties
+            var principal = new ClaimsPrincipal(claimsIdentity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
             {
                 AllowRefresh = true,
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30), // Время жизни cookie (в данном случае 30 минут)
                 IsPersistent = true
-            };
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-            // Возвращаем успешный ответ
-            return Ok(new
-            {
-                name = User.FindFirst(ClaimTypes.Name)?.Value,
-                role = User.FindFirst(ClaimTypes.Role)?.Value
             });
+
+            // Извлекаем имя и роль из объекта ClaimsPrincipal
+            string name = principal.FindFirst(ClaimTypes.Name)?.Value;
+            string role = principal.FindFirst(ClaimTypes.Role)?.Value;
+
+            // Возвращаем успешный ответ с актуальной информацией
+            return Ok(new { name, role });
         }
 
 

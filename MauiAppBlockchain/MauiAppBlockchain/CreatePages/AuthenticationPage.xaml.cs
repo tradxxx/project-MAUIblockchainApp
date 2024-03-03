@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 
 namespace MauiAppBlockchain;
 
@@ -57,6 +58,13 @@ public partial class AuthenticationPage : ContentPage
             // Проверяем успешный ответ от API
             if (response.IsSuccessStatusCode)
             {
+                // Получаем JSON-ответ
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var authResponse = System.Text.Json.JsonSerializer.Deserialize<AuthResponse>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                // Отображаем приветственное сообщение с именем и ролью пользователя
+                string welcomeMessage = $"Добро пожаловать, {authResponse.Name} ({authResponse.Role})!";
+                await Application.Current.MainPage.DisplayAlert("Успешная авторизация", welcomeMessage, "OK");
                 // Авторизация прошла успешно
                 return true;
             }
@@ -76,5 +84,12 @@ public partial class AuthenticationPage : ContentPage
 
         // Авторизация не прошла
         return false;
+    }
+
+    // Вспомогательный класс для десериализации JSON-ответа
+    public class AuthResponse
+    {
+        public string Name { get; set; }
+        public string Role { get; set; }
     }
 }
