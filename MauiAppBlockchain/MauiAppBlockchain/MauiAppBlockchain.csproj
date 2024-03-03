@@ -58,6 +58,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AuthenticationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CreatePages\CreateBlockPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

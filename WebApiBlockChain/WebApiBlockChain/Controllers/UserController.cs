@@ -91,7 +91,7 @@ namespace WebApiBlockChain.Controllers
             {
                 name = User.FindFirst(ClaimTypes.Name)?.Value,
                 role = User.FindFirst(ClaimTypes.Role)?.Value
-        });
+            });
         }
 
 

@@ -44,6 +44,11 @@ namespace MauiAppBlockchain.Service
             return await _httpClient.PostAsync("api/User", content);
         }
 
+        public async Task<HttpResponseMessage> Authentication(HttpContent content)
+        {
+            return await _httpClient.PostAsync("api/User/login", content);
+        }
+
         public async Task<string> GetIpHost()
         {
             string Host = System.Net.Dns.GetHostName();

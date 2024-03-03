@@ -9,6 +9,10 @@
             Text="{Binding Name}"
             Placeholder="Имя пользователя"        
             Margin="20"/>
+        <Entry x:Name="PasswordEntry"
+            Text="{Binding Password}"
+            Placeholder="Пароль пользователя"        
+            Margin="20"/>
 
         <Button Text="Отправить"
             Clicked="SendFromData"/>

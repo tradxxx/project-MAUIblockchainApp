@@ -34,7 +34,8 @@ public partial class CreateUserPage : ContentPage
     {
         User user = new User
         {
-            Name = NameEntry.Text.Trim()
+            Name = NameEntry.Text.Trim(),
+            Password = PasswordEntry.Text.Trim(),
         };
 
         if (Users.Any(u => u.Name == user.Name))

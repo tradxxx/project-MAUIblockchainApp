@@ -17,6 +17,10 @@
 
         <Tab Title="Создание" Icon="plus_square.svg">
             <ShellContent
+                Title="Аутентификация"
+                ContentTemplate="{DataTemplate local:AuthenticationPage}"
+                Route="AuthenticationPage" />
+            <ShellContent
                 Title="Создание нового блока"
                 ContentTemplate="{DataTemplate local:CreateBlockPage}"
                 Route="CreateBlockPage" />
