@@ -12,6 +12,8 @@ namespace WebApiBlockChain.Service
         string GetData(Block block, DateTime time);
         string GetDataHash(Block block, DateTime time);
 
+        bool VerifyPassword(string requestUserPassword, string dbUserPassword);
+
 
     }
 }

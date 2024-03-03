@@ -78,6 +78,18 @@ namespace WebApiBlockChain.Service
             return GetHash(GetData(block,time));
         }
 
-
+        public bool VerifyPassword(string requestUserPassword , string dbUserPassword)
+        {
+            if (GetHash(requestUserPassword) == dbUserPassword)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
+              
+        }
     }
 }

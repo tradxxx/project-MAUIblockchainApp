@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
@@ -18,6 +19,11 @@ namespace WebApiBlockChain
 			{
 				options.UseSqlServer(builder.Configuration["ConnectionStrings:DbConnection"]);
 			});
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/login"; // путь к странице логина
+        });
             builder.Services.AddScoped<IBlockService,BlockService>();
             builder.Services.AddScoped<EntityGateway>();
 
@@ -50,10 +56,10 @@ namespace WebApiBlockChain
 
 			app.UseHttpsRedirection();
 
-			app.UseAuthorization();
+            app.UseAuthentication(); // добавляем middleware для аутентификации
+            app.UseAuthorization(); // добавляем middleware для авторизации
 
-
-			app.MapControllers();
+            app.MapControllers();
 
 			app.Run();
 		}

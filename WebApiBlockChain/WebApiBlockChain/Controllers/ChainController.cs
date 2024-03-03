@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
@@ -52,8 +53,8 @@ namespace WebApiBlockChain.Controllers
 			});
 		}
 
-
-		[HttpPost]
+        [Authorize]
+        [HttpPost]
 		public IActionResult CreateBlock(Block item)
 		{
             if (ModelState.IsValid)
