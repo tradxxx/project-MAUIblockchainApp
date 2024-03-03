@@ -69,7 +69,7 @@ namespace WebApiBlockChain.Controllers
 						Description = "Генезис",
 						Date = DateTime.Now,
 						Category = new Category() { Title = "Генезис", Icon = "Генезис" },
-						User = new User() { Name = "Admin"},						
+						User = new User() { Name = "Admin", Password = _sevice.GetHash("root")},						
                     };
 
                     genesisBlock.PreviousHash = "1";
@@ -78,7 +78,7 @@ namespace WebApiBlockChain.Controllers
 					chain.Blocks.Add(genesisBlock);
 					chain.Last = genesisBlock;
 					//chain.Last.Id = null;
-					_db.Add(chain.Last);
+					_db.AddBlock(chain.Last);
 				}
 				else
 				{
@@ -127,7 +127,7 @@ namespace WebApiBlockChain.Controllers
 
                 chain.Last = newblock;			
 
-				_db.Add(newblock);
+				_db.AddBlock(newblock);
 
 				
 				return Ok(new

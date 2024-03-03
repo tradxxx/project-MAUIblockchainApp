@@ -26,6 +26,7 @@ namespace WebApiBlockChain.Service
             result += block.Category.Icon;
             result += block.UserId;
             result += block.User.Name;
+            result += block.User.Password;
             result += block.PreviousHash;
 
             return result;
@@ -66,6 +67,7 @@ namespace WebApiBlockChain.Service
             result += block.Category.Icon;
             result += block.UserId;
             result += block.User.Name;
+            result += block.User.Password;
             result += block.PreviousHash;
 
             return result;

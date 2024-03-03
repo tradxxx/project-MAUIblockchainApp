@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
+using WebApiBlockChain.Service;
 
 namespace WebApiBlockChain.Controllers
 {
@@ -10,13 +11,18 @@ namespace WebApiBlockChain.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly BlockchainContext _dbContext;
-        public CategoryController(BlockchainContext db) { _dbContext = db; }
+        private readonly EntityGateway _db;
+        private readonly IBlockService _service;
+        public CategoryController(EntityGateway db, IBlockService service)
+        { 
+            _db = db; 
+            _service = service;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<Category>> GetCategories()
         {
-            var categories = _dbContext.Categories.ToList();
+            var categories = _db.GetCategories();
             return Ok(categories);
         }
 
@@ -29,8 +35,7 @@ namespace WebApiBlockChain.Controllers
                 return BadRequest("Invalid category data");
             }
 
-            _dbContext.Categories.Add(category);
-            _dbContext.SaveChanges();
+            _db.AddCategory(category);
 
             return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
         }

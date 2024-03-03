@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
+using WebApiBlockChain.Service;
 
 namespace WebApiBlockChain.Controllers
 {
@@ -9,18 +10,19 @@ namespace WebApiBlockChain.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly BlockchainContext _dbContext;
-
-        public UserController(BlockchainContext dbContext)
+        private readonly EntityGateway _db;
+        private readonly IBlockService _service;
+        public UserController(EntityGateway dbContext, IBlockService service)
         {
-            _dbContext = dbContext;
+            _db = dbContext;
+            _service = service;
         }
 
         // Получение списка всех пользователей
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            var users = _dbContext.Users.ToList();
+            var users = _db.GetUsers();
             return Ok(users);
         }
 
@@ -32,9 +34,8 @@ namespace WebApiBlockChain.Controllers
             {
                 return BadRequest("Invalid user data");
             }
-
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            user.Password = _service.GetHash(user.Password);
+            _db.AddUser(user);
 
             return CreatedAtAction(nameof(GetUsers), new { id = user.Id }, user);
         }

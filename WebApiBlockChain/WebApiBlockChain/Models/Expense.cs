@@ -21,6 +21,8 @@ namespace WebApiBlockChain.Models
         public long Id { get; set; }
         //[Required]
         public string? Name { get; set; }
+        
+        public string? Password { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Block>? UserBlocks { get; set; }

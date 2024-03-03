@@ -28,10 +28,20 @@ namespace WebApiBlockChain
         public IEnumerable<Category> GetCategories() =>
             GetCategories((x) => true);
 
-        public void Add(Block block)
+        public void AddBlock(Block block)
 		{
 			_db.Blocks.Add(block);
 			_db.SaveChanges();
 		}
-	}
+        public void AddUser(User user)
+        {
+            _db.Users.Add(user);
+            _db.SaveChanges();
+        }
+        public void AddCategory(Category category)
+        {
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+        }
+    }
 }
