@@ -1,11 +1,14 @@
-﻿namespace MauiAppBlockchain;
+﻿using MauiAppBlockchain.Service;
+
+namespace MauiAppBlockchain;
 
 public partial class App : Application
 {
-	public App()
+    private readonly СonnectionService сonnectionService;
+    public App(СonnectionService сonnection)
 	{
 		InitializeComponent();
-
-		MainPage = new AppShell();
+        сonnectionService = сonnection;
+        MainPage = new AuthenticationPage(сonnectionService);
 	}
 }

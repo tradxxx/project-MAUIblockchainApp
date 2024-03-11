@@ -7,5 +7,6 @@
         <Entry Placeholder="Логин" x:Name="LoginEntry" />
         <Entry Placeholder="Пароль" IsPassword="True" x:Name="PasswordEntry" />
         <Button Text="Войти" Clicked="LoginButton_Clicked" />
+        <Button Text="Нет учётной записи" Clicked="OutLoginButton_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

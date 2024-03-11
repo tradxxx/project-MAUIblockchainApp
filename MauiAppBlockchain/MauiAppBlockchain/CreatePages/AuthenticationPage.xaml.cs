@@ -17,6 +17,10 @@ public partial class AuthenticationPage : ContentPage
         сonnectionService = сonnection;
 
     }
+    private async void OutLoginButton_Clicked(object sender, EventArgs e)
+    {
+        Application.Current.MainPage = new AppShell();
+    }
 
     private async void LoginButton_Clicked(object sender, EventArgs e)
     {
@@ -30,7 +34,8 @@ public partial class AuthenticationPage : ContentPage
         if (isAuthenticated)
         {
             // Закрываем модальное окно после успешной авторизации
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            //await Application.Current.MainPage.Navigation.PopModalAsync();
+            Application.Current.MainPage = new AppShell();
         }
         else
         {
