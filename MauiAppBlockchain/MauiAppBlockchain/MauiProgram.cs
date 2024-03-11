@@ -19,7 +19,7 @@ public static class MauiProgram
         builder.Services.AddScoped<СonnectionService>();
         builder.Services.AddSingleton<App>();
         builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddSingleton<CreateBlockPage>();
+        builder.Services.AddScoped<CreateBlockPage>();
         builder.Services.AddSingleton<CreateCategoryPage>();
         builder.Services.AddSingleton<CreateUserPage>();
         builder.Services.AddSingleton<SearchBlockPage>();

@@ -2,6 +2,7 @@ using MauiAppBlockchain.Models;
 using MauiAppBlockchain.Service;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 
@@ -45,6 +46,9 @@ public partial class CreateBlockPage : ContentPage
         base.OnAppearing();
 
         await InitializeAsync();
+
+        errorView.Text = string.Empty;
+        errorView.BackgroundColor = Colors.Transparent;
     }
 
 
@@ -104,15 +108,26 @@ public partial class CreateBlockPage : ContentPage
             }
             else
             {
+           
 
-                DisplayArtService.PrintLabelStatus(errorView, "Ошибка отправки", LabelStatus.Error);
+                switch ((int)response.StatusCode)
+                {
+                    case 400:
+                        DisplayArtService.PrintLabelStatus(errorView, "Повреждение целостности хранилища", LabelStatus.Error);
+                        //Вывод информации про фальшивый блок
+                        var myErrorData = await response.Content.ReadFromJsonAsync<BlocksData>();
 
-                //Вывод информации про фальшивый блок
-                var myErrorData = await response.Content.ReadFromJsonAsync<BlocksData>();
+                        var ruinblocks = myErrorData.Blocks as IList<Block>;
+                        sendView.FontFamily = "OpenSansSemibold";
+                        sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nСумма: {ruinblocks[0].Amount}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
+                        break;
+                    case 404:
+                        DisplayArtService.PrintLabelStatus(errorView, "Ошибка соединения", LabelStatus.Error);
+                        await DisplayAlert("Ошибка Авторизации", "Пройдите авторизацию!", "Ок");
+                        break;
 
-                var ruinblocks = myErrorData.Blocks as IList<Block>;
-                sendView.FontFamily = "OpenSansSemibold";
-                sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nСумма: {ruinblocks[0].Amount}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
+                }
+                
 
 
             }
