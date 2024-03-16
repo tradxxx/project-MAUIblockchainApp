@@ -70,7 +70,8 @@ namespace WebApiBlockChain.Controllers
 						Description = "Генезис",
 						Date = DateTime.Now,
 						Category = new Category() { Title = "Генезис", Icon = "Генезис" },
-						User = new User() { Name = "Admin", Password = _sevice.GetHash("root")},						
+						User = new User() { Name = "Admin", Password = _sevice.GetHash("root")},
+						Nonce = 0
                     };
 
                     genesisBlock.PreviousHash = "1";
@@ -125,6 +126,9 @@ namespace WebApiBlockChain.Controllers
 				var category = _db.GetCategories(x => x.Id == item.CategoryId).FirstOrDefault();
 
                 var newblock = _sevice.CreateBlock(item, category, user);
+
+                //Майнинг,Сложность майнинга: 4 нуля в начале хеша
+                newblock = _sevice.MineBlock(newblock, 4);
 
                 chain.Last = newblock;			
 

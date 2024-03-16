@@ -12,6 +12,11 @@ namespace WebApiBlockChain.Service
         string GetData(Block block, DateTime time);
         string GetDataHash(Block block, DateTime time);
 
+
+        Block MineBlock(Block block, int difficulty);
+        //bool IsBlockchainValid(List<Block> blockchain);
+
+
         bool VerifyPassword(string requestUserPassword, string dbUserPassword);
 
 

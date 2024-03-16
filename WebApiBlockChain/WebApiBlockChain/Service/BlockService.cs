@@ -28,6 +28,7 @@ namespace WebApiBlockChain.Service
             result += block.User.Name;
             result += block.User.Password;
             result += block.PreviousHash;
+            result += block.Nonce.ToString();
 
             return result;
         }
@@ -69,6 +70,7 @@ namespace WebApiBlockChain.Service
             result += block.User.Name;
             result += block.User.Password;
             result += block.PreviousHash;
+            result += block.Nonce.ToString();
 
             return result;
         }
@@ -78,6 +80,36 @@ namespace WebApiBlockChain.Service
             return GetHash(GetData(block,time));
         }
 
+        public Block MineBlock(Block block, int difficulty)
+        {
+            block.Nonce = 0;
+            string hash = GetDataHash(block);
+            string target = new string('0', difficulty);
+
+            while (!hash.StartsWith(target))
+            {
+                block.Nonce++;
+                hash = GetDataHash(block);
+            }
+            block.Hash = hash;
+            return block;
+        }
+        //public bool IsBlockchainValid(List<Block> blockchain)
+        //{
+        //    for (int i = 1; i < blockchain.Count; i++)
+        //    {
+        //        Block currentBlock = blockchain[i];
+        //        Block previousBlock = blockchain[i - 1];
+
+        //        if (currentBlock.PreviousHash != GetDataHash(previousBlock))
+        //        {
+        //            Console.WriteLine($"Ошибка: Хеш предыдущего блока {previousBlock.Id} не соответствует хешу в блоке {currentBlock.Id}");
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
         public bool VerifyPassword(string requestUserPassword , string dbUserPassword)
         {
             if (GetHash(requestUserPassword) == dbUserPassword)
