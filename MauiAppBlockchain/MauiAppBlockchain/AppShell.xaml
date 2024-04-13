@@ -17,10 +17,6 @@
 
         <Tab Title="Создание" Icon="plus_square.svg">
             <ShellContent
-                Title="Аутентификация"
-                ContentTemplate="{DataTemplate local:AuthenticationPage}"
-                Route="AuthenticationPage" />
-            <ShellContent
                 Title="Создание нового блока"
                 ContentTemplate="{DataTemplate local:CreateBlockPage}"
                 Route="CreateBlockPage" />
@@ -40,6 +36,13 @@
                 Title="Поиск блока в цепи"
                 ContentTemplate="{DataTemplate local:SearchBlockPage}"
                 Route="SearchBlockPage" />
+        </Tab>
+
+        <Tab Title="Аутентификация" Icon="authentication.svg" >
+            <ShellContent
+                Title="Аутентификация"
+                ContentTemplate="{DataTemplate local:AuthenticationPage}"
+                Route="AuthenticationPage" />
         </Tab>
     </TabBar>
    
