@@ -67,7 +67,7 @@ public partial class SearchBlockPage : ContentPage
                 break;
         }
 
-        
+        pickerItems.IsVisible = true;
     }
 
     void PickerSelectedItem(object sender, EventArgs e)

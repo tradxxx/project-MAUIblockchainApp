@@ -6,7 +6,7 @@
     
     <ScrollView>
         <StackLayout>
-            <Picker x:Name="pickerSelectSearchItem" Title="Выберите предмет поиска"
+            <Picker x:Name="pickerSelectSearchItem" Title="Выберите тему поиска"
                      SelectedIndexChanged="PickerSelectedIndexChanged"                
                      Margin="20">
                 <Picker.Items>
@@ -15,7 +15,7 @@
                 </Picker.Items>
             </Picker>
 
-            <Picker x:Name="pickerItems" 
+            <Picker x:Name="pickerItems" IsVisible="False"
                      SelectedIndexChanged="PickerSelectedItem"
                      Margin="20"/>
 
