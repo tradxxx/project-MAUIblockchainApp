@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppBlockchain.AuthenticationPage"
              Title="AuthenticationPage">
-    <VerticalStackLayout>
-        <Entry Placeholder="Логин" x:Name="LoginEntry" />
-        <Entry Placeholder="Пароль" IsPassword="True" x:Name="PasswordEntry" />
-        <Button Text="Войти" Clicked="LoginButton_Clicked" />
-        <Button Text="Нет учётной записи" Clicked="OutLoginButton_Clicked" />
-    </VerticalStackLayout>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+            <Image Source="logo.png" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+            <Entry Placeholder="Логин" Keyboard="Email" Margin="0,20,0,0" x:Name="LoginEntry"/>
+            <Entry Placeholder="Пароль" IsPassword="True" Margin="0,10,0,0" x:Name="PasswordEntry"/>
+
+            <Button Text="Войти" Clicked="LoginButton_Clicked" Margin="0,20,0,0"/>
+            <Button Text="Нет учётной записи" Clicked="OutLoginButton_Clicked" Margin="0,20,0,0" />
+        </StackLayout>
+    </ContentPage.Content>
+  
 </ContentPage>
