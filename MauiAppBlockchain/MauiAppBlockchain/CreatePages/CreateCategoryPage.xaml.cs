@@ -30,6 +30,11 @@ public partial class CreateCategoryPage : ContentPage
         base.OnAppearing();
 
         await InitializeAsync();
+
+        //errorView.Text = string.Empty;
+        //errorView.BackgroundColor = Colors.Transparent;
+        //sendView.Text = string.Empty;
+        //sendView.Background = Colors.Transparent;
     }
     private async void SendFromData(object sender, EventArgs e)
     {
@@ -51,7 +56,8 @@ public partial class CreateCategoryPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                DisplayArtService.PrintLabelStatus(sendView, "Успех", LabelStatus.Success);
+                await DisplayAlert("Успех", "Категория создана", "Ок");
+                ResetForm();
             }
             else
             {
@@ -60,5 +66,16 @@ public partial class CreateCategoryPage : ContentPage
 
             }
         }
+    }
+
+    private void ResetForm()
+    {
+        // Очистка полей ввода
+        TitleEntry.Text = string.Empty;
+        IconEntry.Text = string.Empty;
+
+        // Очистка других элементов управления (если необходимо)
+        errorView.Text = string.Empty;
+        errorView.BackgroundColor = Colors.Transparent;
     }
 }

@@ -47,8 +47,10 @@ public partial class CreateBlockPage : ContentPage
 
         await InitializeAsync();
 
-        errorView.Text = string.Empty;
-        errorView.BackgroundColor = Colors.Transparent;
+        //errorView.Text = string.Empty;
+        //errorView.BackgroundColor = Colors.Transparent;
+        //sendView.Text = string.Empty;
+        //sendView.Background = Colors.Transparent;
     }
 
 
@@ -104,7 +106,8 @@ public partial class CreateBlockPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                DisplayArtService.PrintLabelStatus(sendView, "Успех", LabelStatus.Success);
+                await DisplayAlert("Успех", "Блок добавлен", "Ок");
+                ResetForm();
             }
             else
             {
@@ -134,6 +137,23 @@ public partial class CreateBlockPage : ContentPage
         }
 
 
+    }
+
+    public void ResetForm()
+    {
+        // Очистка полей ввода
+        AmountEntry.Text = string.Empty;
+        DescriptionEntry.Text = string.Empty;
+
+        // Сброс выбранных элементов в Picker
+        pickerCategories.SelectedIndex = -1;
+        pickerUsers.SelectedIndex = -1;
+
+        // Очистка других элементов управления (если необходимо)
+        errorView.Text = string.Empty;
+        errorView.BackgroundColor = Colors.Transparent;
+        sendView.Text = string.Empty;
+        sendView.BackgroundColor = Colors.Transparent;
     }
 
 

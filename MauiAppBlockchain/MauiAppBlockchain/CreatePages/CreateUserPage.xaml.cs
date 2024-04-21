@@ -29,6 +29,11 @@ public partial class CreateUserPage : ContentPage
         base.OnAppearing();
 
         await InitializeAsync();
+
+        //errorView.Text = string.Empty;
+        //errorView.BackgroundColor = Colors.Transparent;
+        //sendView.Text = string.Empty;
+        //sendView.Background = Colors.Transparent;
     }
     private async void SendFromData(object sender, EventArgs e)
     {
@@ -50,7 +55,9 @@ public partial class CreateUserPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                DisplayArtService.PrintLabelStatus(sendView, "Успех", LabelStatus.Success);
+
+                await DisplayAlert("Успех", "Добавлен новый пользователь", "Ок");
+                ResetForm();
             }
             else
             {
@@ -59,5 +66,15 @@ public partial class CreateUserPage : ContentPage
 
             }
         }
+    }
+    private void ResetForm()
+    {
+        // Очистка полей ввода
+        NameEntry.Text = string.Empty;
+        PasswordEntry.Text = string.Empty;
+
+        // Очистка других элементов управления (если необходимо)
+        errorView.Text = string.Empty;
+        errorView.BackgroundColor = Colors.Transparent;
     }
 }

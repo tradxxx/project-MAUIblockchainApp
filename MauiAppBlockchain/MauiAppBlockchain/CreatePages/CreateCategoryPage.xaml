@@ -17,7 +17,5 @@
         <Button Text="Отправить"
         Clicked="SendFromData"/>
 
-        <Label x:Name="sendView" Text=""
-               Margin="20"/>
     </StackLayout>
 </ContentPage>
