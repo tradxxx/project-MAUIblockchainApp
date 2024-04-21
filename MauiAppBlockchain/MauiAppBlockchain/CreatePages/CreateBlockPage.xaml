@@ -28,6 +28,7 @@
 
             <Picker x:Name="pickerUsers" Title="Выберите пользователя"
                 ItemsSource="{Binding Users}"
+                SelectedItem="{Binding AuthenticatedUserName, Mode=TwoWay}"
                 ItemDisplayBinding="{Binding Name}"
                 Margin="20"/>
 

@@ -24,6 +24,8 @@ namespace WebApiBlockChain.Models
         
         public string? Password { get; set; }
 
+        public string? Role { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<Block>? UserBlocks { get; set; }
     }

@@ -11,6 +11,8 @@ namespace MauiAppBlockchain;
 public partial class AuthenticationPage : ContentPage
 {
     private readonly СonnectionService сonnectionService;
+
+    private string _authenticatedUserName;
     public AuthenticationPage(СonnectionService сonnection)
 	{
 		InitializeComponent();
@@ -21,7 +23,16 @@ public partial class AuthenticationPage : ContentPage
     {
         Application.Current.MainPage = new AppShell();
     }
-
+    
+    public User AuthenticatedUserName
+    {
+        get { return _authenticatedUserName; }
+        set
+        {
+            _authenticatedUserName = value;
+            OnPropertyChanged(nameof(AuthenticatedUserName));
+        }
+    }
     private async void LoginButton_Clicked(object sender, EventArgs e)
     {
         // Получаем введенные учетные данные
@@ -66,6 +77,9 @@ public partial class AuthenticationPage : ContentPage
                 // Получаем JSON-ответ
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var authResponse = System.Text.Json.JsonSerializer.Deserialize<AuthResponse>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                // Сохраняем имя авторизованного пользователя в свойстве ViewModel
+                AuthenticatedUserName = authResponse.Name;
 
                 // Отображаем приветственное сообщение с именем и ролью пользователя
                 string welcomeMessage = $"Добро пожаловать, {authResponse.Name} ({authResponse.Role})!";

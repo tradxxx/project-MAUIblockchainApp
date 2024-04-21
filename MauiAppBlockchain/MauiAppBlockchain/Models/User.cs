@@ -16,6 +16,8 @@ namespace MauiAppBlockchain.Models
         public string? Name { get; set; }
         [JsonPropertyName("password")]
         public string? Password { get; set; }
+        [JsonPropertyName("role")]
+        public string? Role { get; set; }
         [JsonIgnore]
         public virtual ICollection<Block>? UserBlocks { get; set; }
     }

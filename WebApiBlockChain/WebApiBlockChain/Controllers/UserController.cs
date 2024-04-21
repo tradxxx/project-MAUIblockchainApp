@@ -6,6 +6,7 @@ using System.Security.Claims;
 using WebApiBlockChain.Data;
 using WebApiBlockChain.Models;
 using WebApiBlockChain.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiBlockChain.Controllers
 {
@@ -36,6 +37,10 @@ namespace WebApiBlockChain.Controllers
             if (user == null)
             {
                 return BadRequest("Invalid user data");
+            }
+            if (user.Role == "Admin")
+            {
+                user.Role = "Customer";
             }
             user.Password = _service.GetHash(user.Password);
             _db.AddUser(user);
@@ -71,9 +76,19 @@ namespace WebApiBlockChain.Controllers
             // Создаем объект Claims для пользователя
             var claims = new List<Claim>
             {
-                 new Claim(ClaimTypes.Name, user.Name),
-                 new Claim(ClaimTypes.Role, "Пользователь")
+                new Claim(ClaimTypes.Name, user.Name)
             };
+
+            // Добавляем роль пользователя в список claims
+            if (user.Role == "Admin")
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            }
+            else
+            {
+                user.Role = "Customer";
+                claims.Add(new Claim(ClaimTypes.Role, "Customer"));
+            }
 
             // Создаем объект ClaimsIdentity и устанавливаем его в HttpContext.User
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -91,10 +106,8 @@ namespace WebApiBlockChain.Controllers
 
             // Возвращаем успешный ответ с актуальной информацией
             return Ok(new { name, role });
+
+
         }
-
-
-
-
     }
 }

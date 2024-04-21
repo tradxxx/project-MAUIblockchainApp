@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiBlockChain.Data;
 
@@ -11,9 +12,11 @@ using WebApiBlockChain.Data;
 namespace WebApiBlockChain.Migrations
 {
     [DbContext(typeof(BlockchainContext))]
-    partial class BlockchainContextModelSnapshot : ModelSnapshot
+    [Migration("20240421123823_InitUpdate5")]
+    partial class InitUpdate5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

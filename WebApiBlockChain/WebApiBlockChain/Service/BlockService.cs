@@ -27,6 +27,7 @@ namespace WebApiBlockChain.Service
             result += block.UserId;
             result += block.User.Name;
             result += block.User.Password;
+            result += block.User.Role;
             result += block.PreviousHash;
             result += block.Nonce.ToString();
 
@@ -69,6 +70,7 @@ namespace WebApiBlockChain.Service
             result += block.UserId;
             result += block.User.Name;
             result += block.User.Password;
+            result += block.User.Role;
             result += block.PreviousHash;
             result += block.Nonce.ToString();
 
