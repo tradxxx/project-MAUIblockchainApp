@@ -31,6 +31,7 @@ namespace WebApiBlockChain.Controllers
         }
 
         // Создание нового пользователя
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult<User> CreateUser([FromBody] User user)
         {
@@ -38,7 +39,7 @@ namespace WebApiBlockChain.Controllers
             {
                 return BadRequest("Invalid user data");
             }
-            if (user.Role == "Admin")
+            if (user.Role != "Admin")
             {
                 user.Role = "Customer";
             }

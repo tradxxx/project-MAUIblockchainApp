@@ -53,7 +53,7 @@ namespace WebApiBlockChain.Controllers
 			});
 		}
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Customer")]
         [HttpPost]
 		public IActionResult CreateBlock(Block item)
 		{
