@@ -11,7 +11,15 @@
             <Entry Placeholder="Пароль" IsPassword="True" Margin="0,10,0,0" x:Name="PasswordEntry"/>
 
             <Button Text="Войти" Clicked="LoginButton_Clicked" Margin="0,20,0,0"/>
-            <Button Text="Нет учётной записи" Clicked="OutLoginButton_Clicked" Margin="0,20,0,0" />
+            <Label 
+                 Text="Нет учётной записи" 
+                 TextColor="Blue"
+                 TextDecorations="Underline"
+                 Margin="0,20,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OutLoginButton_Clicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
   

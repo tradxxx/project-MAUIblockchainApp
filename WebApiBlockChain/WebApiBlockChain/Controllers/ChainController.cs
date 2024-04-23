@@ -69,7 +69,7 @@ namespace WebApiBlockChain.Controllers
                         Amount = 0,
 						Description = "Генезис",
 						Date = DateTime.Now,
-						Category = new Category() { Title = "Генезис", Icon = "Генезис" },
+						Category = new Category() { Title = "Генезис", Tag = "Генезис" },
 						User = new User() { Name = "Admin", Password = _sevice.GetHash("root"), Role = "Admin"},
 						Nonce = 0
                     };

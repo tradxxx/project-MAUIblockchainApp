@@ -41,7 +41,7 @@ public partial class CreateCategoryPage : ContentPage
         Category category = new Category
         {
             Title = TitleEntry.Text.Trim(),
-            Icon = IconEntry.Text.Trim()
+            Tag = TagEntry.Text.Trim()
         };
 
         if (Categories.Any(c => c.Title == category.Title))
@@ -72,7 +72,7 @@ public partial class CreateCategoryPage : ContentPage
     {
         // Очистка полей ввода
         TitleEntry.Text = string.Empty;
-        IconEntry.Text = string.Empty;
+        TagEntry.Text = string.Empty;
 
         // Очистка других элементов управления (если необходимо)
         errorView.Text = string.Empty;

@@ -10,7 +10,7 @@ namespace WebApiBlockChain.Models
         //[Required]
         public string Title { get; set; } 
 
-        public string? Icon { get; set; }
+        public string? Tag { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Block>? CategoryBlocks { get; set; }

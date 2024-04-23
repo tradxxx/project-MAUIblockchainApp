@@ -9,9 +9,9 @@
            Text="{Binding Title}"
            Placeholder="Название"        
            Margin="20"/>
-        <Entry x:Name="IconEntry"
-           Text="{Binding Icon}"
-           Placeholder="Изображение"
+        <Entry x:Name="TagEntry"
+           Text="{Binding Tag}"
+           Placeholder="Тег"
            Margin="20"/>
 
         <Button Text="Отправить"

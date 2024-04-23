@@ -15,8 +15,8 @@ namespace MauiAppBlockchain.Models
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
+        [JsonPropertyName("tag")]
+        public string? Tag { get; set; }
         [JsonIgnore]
         public virtual ICollection<Block>? CategoryBlocks { get; set; }
     }

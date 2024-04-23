@@ -23,7 +23,7 @@ namespace WebApiBlockChain.Service
             result += block.Date.ToString("dd.MM.yyyy HH:mm:ss.f");
             result += block.CategoryId;
             result += block.Category.Title;
-            result += block.Category.Icon;
+            result += block.Category.Tag;
             result += block.UserId;
             result += block.User.Name;
             result += block.User.Password;
@@ -66,7 +66,7 @@ namespace WebApiBlockChain.Service
             result += time.ToString("dd.MM.yyyy HH:mm:ss.f");
             result += block.CategoryId;
             result += block.Category.Title;
-            result += block.Category.Icon;
+            result += block.Category.Tag;
             result += block.UserId;
             result += block.User.Name;
             result += block.User.Password;
