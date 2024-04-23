@@ -19,6 +19,7 @@ public partial class AuthenticationPage : ContentPage
     }
     private async void OutLoginButton_Clicked(object sender, EventArgs e)
     {
+        await DisplayAlert("Предупреждение", "Пользователь не авторизирован\nНекоторые функции приложения ограничены", "Ок");
         Application.Current.MainPage = new AppShell();
     }
     
