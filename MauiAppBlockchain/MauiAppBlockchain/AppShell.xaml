@@ -17,16 +17,16 @@
 
         <Tab Title="Создание" Icon="plus_square.svg">
             <ShellContent
-                Title="Создание нового блока"
+                Title="Новый блок"
                 ContentTemplate="{DataTemplate local:CreateBlockPage}"
                 Route="CreateBlockPage" />
             <ShellContent
-                Title="Создание новой категории"
+                Title="Новая категория"
                 ContentTemplate="{DataTemplate local:CreateCategoryPage}"
                 Route="CreateCategoryPage" />
 
             <ShellContent
-                Title="Создание нового пользователя"
+                Title="Новый пользователь"
                 ContentTemplate="{DataTemplate local:CreateUserPage}"
                 Route="CreateUserPage" />
         </Tab>

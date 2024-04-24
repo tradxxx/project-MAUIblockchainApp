@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppBlockchain.CreateBlockPage">
+             x:Class="MauiAppBlockchain.CreateBlockPage"
+             Title="Создание">
     <ScrollView>
         <StackLayout>
             <Label x:Name="errorView" Text=""
@@ -11,11 +12,6 @@
                Placeholder="Сумма"
                Keyboard="Numeric"
                Margin="20"/>
-            <Label x:Name="labelIPHost"
-                Text="IP-Host: "
-               FontSize="Title"
-               TextColor="DarkOrange"
-                Margin="20"/>
             <Entry x:Name="DescriptionEntry"
                Text="{Binding Description}"
                Placeholder="Описание"
