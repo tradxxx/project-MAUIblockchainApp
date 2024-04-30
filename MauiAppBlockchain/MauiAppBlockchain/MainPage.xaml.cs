@@ -23,7 +23,17 @@ public partial class MainPage : ContentPage
             if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
             {
                 var selectedElement = e.CurrentSelection[0] as Block; // Получите выбранный элемент
-                DisplayFullInfoBlock(selectedElement);                                 // Выполните нужные действия с выбранным элементом
+                DisplayFullInfoBlock(selectedElement);   // Выполните нужные действия с выбранным элементом
+                // Подождите, пока не завершится DisplayFullInfoBlock
+                Task.Run(() =>
+                {
+                    // Здесь код, который может быть выполнен асинхронно, если это необходимо
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        // Сбросить выбор
+                        ((CollectionView)sender).SelectedItem = null;
+                    });
+                });
             }
         };
 

@@ -84,16 +84,23 @@ namespace WebApiBlockChain.Service
 
         public Block MineBlock(Block block, int difficulty)
         {
+            // Инициализация значения nonce блока равным 0
             block.Nonce = 0;
+            // Вычисление хеша блока с использованием текущего значения nonce
             string hash = GetDataHash(block);
+            // Создание строки-цели, которая состоит из 'difficulty' количества нулей
             string target = new string('0', difficulty);
-
+            // Цикл продолжается до тех пор, пока начало хеша не будет соответствовать цели
             while (!hash.StartsWith(target))
             {
+                // Увеличение nonce на 1 для изменения хеша блока
                 block.Nonce++;
+                // Повторное вычисление хеша блока с новым значением nonce
                 hash = GetDataHash(block);
             }
+            // После нахождения подходящего хеша, он присваивается свойству Hash блока
             block.Hash = hash;
+            // Возвращение добытого блока с корректным хешем
             return block;
         }
         //public bool IsBlockchainValid(List<Block> blockchain)
