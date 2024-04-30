@@ -38,9 +38,9 @@
                 Route="SearchBlockPage" />
         </Tab>
 
-        <Tab Title="Аутентификация" Icon="authentication.svg" >
+        <Tab Title="Авторизация" Icon="authentication.svg" >
             <ShellContent
-                Title="Аутентификация"
+                Title="Авторизация"
                 ContentTemplate="{DataTemplate local:AuthenticationPage}"
                 Route="AuthenticationPage" />
         </Tab>
