@@ -122,7 +122,7 @@ public partial class CreateBlockPage : ContentPage
 
                         var ruinblocks = myErrorData.Blocks as IList<Block>;
                         sendView.FontFamily = "OpenSansSemibold";
-                        sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nСумма: {ruinblocks[0].Amount}\nОписание: {ruinblocks[0].Date}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
+                        sendView.Text = $"Ошибка данных в блоке №{ruinblocks[0].Id}:\nСтатус: {myErrorData.Status}\nВремя: {ruinblocks[0].Date}\nСумма: {ruinblocks[0].Amount}\nОписание: {ruinblocks[0].Description}\nКатегория: {ruinblocks[0].Category.Title}\nПользователь: {ruinblocks[0].User.Name}";
                         break;
                     case 404:
                         DisplayArtService.PrintLabelStatus(errorView, "Ошибка соединения", LabelStatus.Error);
